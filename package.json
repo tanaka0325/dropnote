@@ -1,0 +1,20 @@
+{
+  "name": "dropnote",
+  "version": "0.0.1",
+  "description": "Markdown Memo Application.",
+  "main": "./src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Hiroyuki Tanaka <h.tanaka.0325@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "electron-prebuilt": "^1.3.4"
+  },
+  "dependencies": {
+    "codemirror": "^5.18.2",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1"
+  }
+}
