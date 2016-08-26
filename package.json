@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "build": "browserify src/index.jsx -t babelify -o src/bundle.js",
-    "watch": "watchify src/index.jsx -t babelify -o src/bundle.js"
+    "watch": "watchify src/index.jsx -t babelify -o src/bundle.js -v"
   },
   "author": "Hiroyuki Tanaka <h.tanaka.0325@gmail.com>",
   "license": "MIT",
