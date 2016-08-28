@@ -2,9 +2,9 @@ import path from 'path';
 
 module.exports = [
   {
-    entry: path.resolve(path.join('src/index.jsx')),
+    entry: path.join(__dirname, 'src', 'index.jsx'),
     output: {
-      path: path.resolve(path.join('src')),
+      path: path.join('src'),
       filename: 'bundle.js',
     },
     target: 'atom',
