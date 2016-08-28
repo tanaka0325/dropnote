@@ -7,7 +7,7 @@
     "start": "electron .",
     "build": "webpack",
     "pack": "webpack",
-    "watch": "webpack-dev-server"
+    "watch": "webpack --watch"
   },
   "author": "Hiroyuki Tanaka <h.tanaka.0325@gmail.com>",
   "license": "MIT",
