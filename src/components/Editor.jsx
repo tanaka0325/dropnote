@@ -47,14 +47,10 @@ export default class Editor extends React.Component {
   }
 
   readFile(path) {
-    try {
-      const data = fs.readFileSync(path, 'utf8');
-      this.setState({
-        code: data,
-      });
-    } catch (e) {
-      console.log('Error:', e.stack);
-    }
+    const data = fs.readFileSync(path, 'utf8');
+    this.setState({
+      code: data,
+    });
   }
 
   updateCode(newCode) {
