@@ -33,8 +33,8 @@ export default class SideMenu extends React.Component {
   }
 
   render() {
-    const fileNodes = this.state.fileList.map((file) =>
-      <SideMenuItem fileName={file[0]} fileType={file[1]} />
+    const fileNodes = this.state.fileList.map((file, i) =>
+      <SideMenuItem fileName={file[0]} fileType={file[1]} key={i} />
     );
 
     return (
