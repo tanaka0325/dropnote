@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-export default class SideMenuDir extends React.Component {
+const propTypes = {
+  fileName: PropTypes.string.isRequired,
+  fileType: PropTypes.string.isRequired,
+};
+
+export default class SideMenuItem extends React.Component {
   constructor() {
     super();
 
@@ -28,3 +33,5 @@ export default class SideMenuDir extends React.Component {
     );
   }
 }
+
+SideMenuItem.propTypes = propTypes;
