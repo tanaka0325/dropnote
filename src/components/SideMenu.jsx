@@ -9,8 +9,8 @@ const propTypes = {
 };
 
 export default class SideMenu extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       fileList: [],
     };
