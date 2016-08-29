@@ -18,12 +18,32 @@ export default class Editor extends React.Component {
       saved: true,
     };
 
+    this.addKeyMapInCm = this.addKeyMapInCm.bind(this);
+    this.saveOpenedFile = this.saveOpenedFile.bind(this);
     this.readFile = this.readFile.bind(this);
     this.updateCode = this.updateCode.bind(this);
   }
 
   componentDidMount() {
     this.readFile(this.props.openedFilePath);
+
+    const keymaps = {
+      'Cmd-S': this.saveOpenedFile,
+    };
+    this.addKeyMapInCm(keymaps);
+  }
+
+  addKeyMapInCm(keymaps) {
+    const cm = this.editor.getCodeMirror();
+    cm.addKeyMap(keymaps);
+  }
+
+  saveOpenedFile() {
+    if (this.state.saved) return;
+    fs.writeFileSync(this.props.openedFilePath, this.state.code);
+    this.setState({
+      saved: true,
+    });
   }
 
   readFile(path) {
@@ -55,7 +75,12 @@ export default class Editor extends React.Component {
 
     return (
       <div className="pane">
-        <Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+        <Codemirror
+          ref={(c) => { this.editor = c; }}
+          value={this.state.code}
+          onChange={this.updateCode}
+          options={options}
+        />
       </div>
     );
   }
