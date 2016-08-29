@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import fs from 'fs';
 import path from 'path';
 
 import SideMenuItem from './SideMenuItem.jsx';
 
+const propTypes = {
+  stragePath: PropTypes.string.isRequired,
+};
+
 export default class SideMenu extends React.Component {
   constructor() {
     super();
     this.state = {
-      stragePath: '/Users/tanaka/Dropbox/tmp',
       fileList: [],
     };
 
@@ -21,8 +24,8 @@ export default class SideMenu extends React.Component {
 
   getFileList() {
     const fileList = [];
-    fs.readdirSync(this.state.stragePath).forEach((file) => {
-      if (fs.statSync(path.join(this.state.stragePath, file)).isDirectory()) {
+    fs.readdirSync(this.props.stragePath).forEach((file) => {
+      if (fs.statSync(path.join(this.props.stragePath, file)).isDirectory()) {
         fileList.push([file, 'dir']);
       } else if (file[0] !== '.') {
         fileList.push([file, 'file']);
@@ -59,3 +62,5 @@ export default class SideMenu extends React.Component {
     );
   }
 }
+
+SideMenu.propTypes = propTypes;
