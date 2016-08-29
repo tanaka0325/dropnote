@@ -2,8 +2,7 @@ import React from 'react';
 import fs from 'fs';
 import path from 'path';
 
-import SideMenuDir from './SideMenuDir.jsx';
-import SideMenuFile from './SideMenuFile.jsx';
+import SideMenuItem from './SideMenuItem.jsx';
 
 export default class SideMenu extends React.Component {
   constructor() {
@@ -30,17 +29,13 @@ export default class SideMenu extends React.Component {
       }
       // fileList.push([file, 'dotfile']); // if you render dotfiles, delete comment out.
     });
-    this.setState({ fileList: fileList });
+    this.setState({ fileList });
   }
 
   render() {
-    const fileNodes = this.state.fileList.map((file) => {
-      if (file[1] === 'dir') {
-        return <SideMenuDir fileName={file[0]} />
-      } else if (file[1] === 'file') {
-        return <SideMenuFile fileName={file[0]} />
-      }
-    });
+    const fileNodes = this.state.fileList.map((file) =>
+      <SideMenuItem fileName={file[0]} fileType={file[1]} />
+    );
 
     return (
       <div className="pane-sm sidebar">
