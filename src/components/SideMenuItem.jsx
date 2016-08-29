@@ -24,10 +24,13 @@ export default class SideMenuItem extends React.Component {
   }
 
   render() {
-    const classes = ['icon', this.fileTypeToClassName(this.props.fileType)];
+    const fileIconClx = ['icon', this.fileTypeToClassName(this.props.fileType)];
+    const expandIconClass = (this.props.fileType === 'dir') ? 'icon icon-right-dir' : 'icon';
+
     return (
       <span className="nav-group-item">
-        <span className={classes.join(' ')} />
+        <span className={expandIconClass} />
+        <span className={fileIconClx.join(' ')} />
         {this.props.fileName}
       </span>
     );
