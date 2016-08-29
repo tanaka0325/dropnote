@@ -76,7 +76,7 @@ export default class Editor extends React.Component {
     return (
       <div className="pane">
         <Codemirror
-          ref={(c) => { this.editor = c; }}
+          ref={ref => { this.editor = ref; }}
           value={this.state.code}
           onChange={this.updateCode}
           options={options}
