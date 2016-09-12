@@ -18,32 +18,17 @@ export default class Editor extends React.Component {
       saved: true,
     };
 
-    this.addKeyMapInCm = this.addKeyMapInCm.bind(this);
-    this.saveOpenedFile = this.saveOpenedFile.bind(this);
     this.readFile = this.readFile.bind(this);
     this.updateCode = this.updateCode.bind(this);
-    this.openFile = this.openFile.bind(this);
   }
 
-  componentDidMount() {
-    this.openFile(this.props.openedFilePath);
-  }
+  // componentDidMount() {
+  //   this.readFile(this.state.openedFilePath);
+  // }
 
   componentWillReceiveProps(nextProps) {
-    this.openFile(nextProps.openedFilePath);
-  }
-
-  addKeyMapInCm(keymaps) {
-    const cm = this.editor.getCodeMirror();
-    cm.addKeyMap(keymaps);
-  }
-
-  saveOpenedFile() {
-    if (this.state.saved) return;
-    fs.writeFileSync(this.props.openedFilePath, this.state.code);
-    this.setState({
-      saved: true,
-    });
+    console.log(nextProps.openedFilePath);
+    this.readFile(nextProps.openedFilePath);
   }
 
   readFile(path) {
@@ -51,15 +36,6 @@ export default class Editor extends React.Component {
     this.setState({
       code: data,
     });
-  }
-
-  openFile(openFilePath) {
-    this.readFile(openFilePath);
-
-    const keymaps = {
-      'Cmd-S': this.saveOpenedFile,
-    };
-    this.addKeyMapInCm(keymaps);
   }
 
   updateCode(newCode) {

@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 
 const propTypes = {
   fileName: PropTypes.string.isRequired,
-  fileType: PropTypes.string.isRequired,
 };
 
 export default class SideMenuItem extends React.Component {
@@ -29,17 +28,16 @@ export default class SideMenuItem extends React.Component {
   }
 
   render() {
-    const navClasses = ['nav-group-item'];
-    if (this.props.isActive) {
-      navClasses.push('active');
-    }
-    const fileIconClasses = ['icon', this.fileTypeToClassName(this.props.fileType)];
+    const fileIconClx = ['icon', this.fileTypeToClassName(this.props.fileType)];
     let expandIconClass = (this.props.fileType === 'dir') ? 'icon icon-right-dir' : 'icon';
+    if (this.props.isActive) {
+      expandIconClass = expandIconClass + ' active';
+    };
 
     return (
-      <span className={navClasses.join(' ')} onClick={this._onClick}>
+      <span className="nav-group-item" onClick={this._onClick}>
         <span className={expandIconClass} />
-        <span className={fileIconClasses.join(' ')} />
+        <span className={fileIconClx.join(' ')} />
         {this.props.fileName}
       </span>
     );

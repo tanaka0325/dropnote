@@ -13,9 +13,11 @@ export default class SideMenu extends React.Component {
     super(props);
     this.state = {
       fileList: [],
+      activeItemName: '',
     };
 
     this.getFileList = this.getFileList.bind(this);
+    this._changeActiveFile = this._changeActiveFile.bind(this);
   }
 
   componentDidMount() {
@@ -29,16 +31,32 @@ export default class SideMenu extends React.Component {
         fileList.push([file, 'dir']);
       } else if (file[0] !== '.') {
         fileList.push([file, 'file']);
+      } else {
+        fileList.push([file, 'dotfile']); // if you render dotfiles, delete comment out.
       }
-      // fileList.push([file, 'dotfile']); // if you render dotfiles, delete comment out.
     });
     this.setState({ fileList });
   }
 
+  _changeActiveFile(clickedFileName) {
+    this.setState({
+      activeItemName: clickedFileName,
+    });
+    this.props.openFile(clickedFileName);
+  }
+
   render() {
-    const fileNodes = this.state.fileList.map((file, i) =>
-      <SideMenuItem fileName={file[0]} fileType={file[1]} key={i} />
-    );
+    const fileNodes = this.state.fileList.map((file, i) => {
+      return (
+        <SideMenuItem
+          key={i}
+          fileName={file[0]}
+          fileType={file[1]}
+          isActive={this.state.activeItemName === file[0]}
+          _changeActiveFile={this._changeActiveFile}
+        />
+      );
+    });
 
     return (
       <div className="pane-sm sidebar">
