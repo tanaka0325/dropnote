@@ -8,17 +8,9 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      rootPath: '/Users/tanaka/Dropbox/tmp',
       openedFileName: 'file1.md',
-      stragePath: '/Users/tanaka/Dropbox/tmp',
     };
-
-    this.openFile = this.openFile.bind(this);
-  }
-
-  openFile(openFileName) {
-    this.setState({
-      openedFileName: openFileName,
-    });
   }
 
   render() {
@@ -27,11 +19,9 @@ export default class App extends React.Component {
         <div className="window-content">
           <div className="pane-group">
             <SideMenu
-              stragePath={this.state.stragePath}
-              openFile={this.openFile}
-              // openedFileName={this.state.openedFileName}
+              rootPath={this.state.rootPath}
             />
-            <Editor openedFilePath={path.join(this.state.stragePath, this.state.openedFileName)} />
+            <Editor openedFilePath={path.join(this.state.rootPath, this.state.openedFileName)} />
           </div>
         </div>
       </div>
