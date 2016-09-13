@@ -4,6 +4,7 @@ import FileList from './FileList.jsx';
 
 const propTypes = {
   rootPath: PropTypes.string.isRequired,
+  handleFileItemClick: PropTypes.func.isRequired,
 };
 
 export default class SideMenu extends React.Component {
@@ -12,6 +13,12 @@ export default class SideMenu extends React.Component {
     this.state = {
       fileList: [],
     };
+
+    this._handleFileItemClick = this._handleFileItemClick.bind(this);
+  }
+
+  _handleFileItemClick(fileName) {
+    this.props.handleFileItemClick(fileName);
   }
 
   render() {
@@ -30,7 +37,7 @@ export default class SideMenu extends React.Component {
           </span>
 
           <h5 className="nav-group-title">Files</h5>
-          <FileList listPath={this.props.rootPath} />
+          <FileList listPath={this.props.rootPath} handleFileItemClick={this._handleFileItemClick} />
         </nav>
 
       </div>

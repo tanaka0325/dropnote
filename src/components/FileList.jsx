@@ -7,6 +7,7 @@ import ItemFile from './ItemFile.jsx';
 
 const propTypes = {
   listPath: PropTypes.string.isRequired,
+  handleFileItemClick: PropTypes.func.isRequired,
 };
 
 export default class FileList extends React.Component {
@@ -16,6 +17,8 @@ export default class FileList extends React.Component {
     this.state = {
       fileList: [],
     };
+
+    this._handleFileItemClick = this._handleFileItemClick.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +39,10 @@ export default class FileList extends React.Component {
     this.setState({ fileList });
   }
 
+  _handleFileItemClick(fileName) {
+    this.props.handleFileItemClick(fileName);
+  }
+
   render() {
     const fileNodes = this.state.fileList.map((file, i) => {
       if (file[1] === 'dir') {
@@ -45,6 +52,7 @@ export default class FileList extends React.Component {
             dirName={file[0]}
             isActive={false}
             rootPath={this.props.listPath}
+            handleFileItemClick={this._handleFileItemClick}
           />
         );
       }
@@ -53,6 +61,7 @@ export default class FileList extends React.Component {
           key={i}
           fileName={file[0]}
           isActive={false}
+          handleFileItemClick={this._handleFileItemClick}
         />
       );
     });

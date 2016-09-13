@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 const propTypes = {
   fileName: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
+  handleFileItemClick: PropTypes.func.isRequired,
 };
 
 export default class ItemFile extends React.Component {
@@ -12,8 +13,8 @@ export default class ItemFile extends React.Component {
     this._onClick = this._onClick.bind(this);
   }
 
-  _onClick(e) {
-    console.log("clicked file:" + this.props.fileName);
+  _onClick() {
+    this.props.handleFileItemClick(this.props.fileName);
   }
 
   render() {

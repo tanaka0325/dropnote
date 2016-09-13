@@ -8,6 +8,7 @@ const propTypes = {
   dirName: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   rootPath: PropTypes.string.isRequired,
+  handleFileItemClick: PropTypes.func.isRequired,
 };
 
 export default class ItemDirectory extends React.Component {
@@ -21,6 +22,7 @@ export default class ItemDirectory extends React.Component {
 
     this._onClick = this._onClick.bind(this);
     this.expand = this.expand.bind(this);
+    this._handleFileItemClick = this._handleFileItemClick.bind(this);
   }
 
   expand(dirname) {
@@ -40,6 +42,10 @@ export default class ItemDirectory extends React.Component {
     });
   }
 
+  _handleFileItemClick(fileName) {
+    this.props.handleFileItemClick(path.join(this.props.dirName, fileName));
+  }
+
   render() {
     const arrowIcon = this.state.isExpand ? 'icon icon-down-dir' : 'icon icon-right-dir';
     const navClasses = ['nav-group-item'];
@@ -56,7 +62,7 @@ export default class ItemDirectory extends React.Component {
         </span>
         {(() => {
           if (this.state.isExpand) {
-            return <FileList listPath={path.join(this.props.rootPath, this.props.dirName)} />;
+            return <FileList listPath={path.join(this.props.rootPath, this.props.dirName)} handleFileItemClick={this._handleFileItemClick} />;
           }
         })()}
       </span>

@@ -12,6 +12,7 @@ const propTypes = {
 export default class Editor extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       code: '',
       mode: 'markdown',
