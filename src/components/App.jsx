@@ -1,8 +1,8 @@
 import React from 'react';
-import path from 'path';
+// import path from 'path';
 
 import SideMenu from './SideMenu.jsx';
-import Editor from './Editor.jsx';
+// import Editor from './Editor.jsx';
 
 export default class App extends React.Component {
   constructor() {
