@@ -11,14 +11,6 @@ export default class App extends React.Component {
       rootPath: '/Users/tanaka/Dropbox/tmp',
       openedFileName: 'file1.md',
     };
-
-    this._handleFileItemClick = this._handleFileItemClick.bind(this);
-  }
-
-  _handleFileItemClick(fileName) {
-    this.setState({
-      openedFileName: fileName,
-    });
   }
 
   render() {
@@ -30,7 +22,7 @@ export default class App extends React.Component {
               rootPath={this.state.rootPath}
               handleFileItemClick={this._handleFileItemClick}
             />
-            <Editor openedFilePath={path.join(this.state.rootPath, this.state.openedFileName)} />
+            {/* <Editor openedFilePath={path.join(this.state.rootPath, this.state.openedFileName)} /> */}
           </div>
         </div>
       </div>
